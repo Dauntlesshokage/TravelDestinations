@@ -4,17 +4,15 @@
       <mat-spinner></mat-spinner>
     </div>
     <div *ngIf="!loading" class="card-container">
-      <div class="card-container">
-        <mat-card *ngFor="let place of places" class="destination-card">
-          <img mat-card-image [src]="place.image" [alt]="place.title" />
-          <mat-card-header>
-            <mat-card-title>{{ place.title }}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>{{ place.description }}</p>
-          </mat-card-content>
-        </mat-card>
-      </div>
+      <mat-card *ngFor="let place of places" class="destination-card">
+        <img mat-card-image [src]="place.image" [alt]="place.title" />
+        <mat-card-header>
+          <mat-card-title>{{ place.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ place.description }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

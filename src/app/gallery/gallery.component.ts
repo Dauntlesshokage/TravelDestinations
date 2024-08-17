@@ -50,7 +50,6 @@ export class GalleryComponent {
           console.error('Unexpected status code:', response.statusCode);
         }
         this.loading = false;
-        console.log(this.places);
       },
       error: (error) => {
         console.error('Error fetching destinations:', error);
