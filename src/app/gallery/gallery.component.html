@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Travel Destinations</h1>
+  <!-- <div *ngIf="loading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div> -->
+  <!-- <div *ngIf="!loading" class="card-container"> -->
+  <div class="card-container">
+    <mat-card *ngFor="let destination of destinations" class="destination-card">
+      <!-- <img mat-card-image [src]={{destination.image}} [alt]={{destination.title}} /> -->
+      <mat-card-header>
+        <mat-card-title>{{ destination.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ destination.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
