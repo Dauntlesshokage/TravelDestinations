@@ -30,43 +30,48 @@ export class GalleryComponent {
     {
       title: 'Paris',
       description: 'The capital city of France',
-      image: 'paris.jpg',
+      image:
+        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
     },
     {
       title: 'London',
       description: 'The capital city of France',
-      image: 'paris.jpg',
+      image:
+        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
     },
     {
       title: 'NewYork',
       description: 'The capital city of France',
-      image: 'paris.jpg',
+      image:
+        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
     },
   ];
-  // loading = true;
-  // constructor(private http: HttpClient) {}
-  // ngOnInit() {
-  //   this.fetchDestinations();
-  // }
-  // fetchDestinations() {
-  //   const apiUrl =
-  //     'https://your-api-gateway-url.amazonaws.com/prod/destinations';
-  //   this.http.get<LambdaResponse>(apiUrl).subscribe({
-  //     next: (response) => {
-  //       if (response.statusCode === 200) {
-  //         this.destinations = JSON.parse(response.body) as Destination[];
-  //       } else {
-  //         console.error('Unexpected status code:', response.statusCode);
-  //       }
-  //       this.loading = false;
-  //     },
-  //     error: (error) => {
-  //       console.error('Error fetching destinations:', error);
-  //       this.loading = false;
-  //     },
-  //     complete: () => {
-  //       console.log('Fetch completed');
-  //     },
-  //   });
-  // }
+  places: Destination[] = [];
+  loading = true;
+  constructor(private http: HttpClient) {}
+  ngOnInit() {
+    this.fetchDestinations();
+  }
+  async fetchDestinations() {
+    const apiUrl =
+      'https://h31o2708ni.execute-api.us-east-1.amazonaws.com/GETmethod';
+    await this.http.get<LambdaResponse>(apiUrl).subscribe({
+      next: (response) => {
+        if (response.statusCode === 200) {
+          this.places = JSON.parse(response.body) as Destination[];
+        } else {
+          console.error('Unexpected status code:', response.statusCode);
+        }
+        this.loading = false;
+        console.log(this.places);
+      },
+      error: (error) => {
+        console.error('Error fetching destinations:', error);
+        this.loading = false;
+      },
+      complete: () => {
+        console.log('Fetch completed');
+      },
+    });
+  }
 }
