@@ -4,20 +4,6 @@ import { CommonModule, NgFor } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 
-interface LambdaResponse {
-  statusCode: number;
-  headers: {
-    [key: string]: string;
-  };
-  body: string;
-}
-
-interface Destination {
-  title: string;
-  description: string;
-  image: string;
-}
-
 @Component({
   selector: 'app-gallery',
   standalone: true,
@@ -26,27 +12,7 @@ interface Destination {
   styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent {
-  destinations: Destination[] = [
-    {
-      title: 'Paris',
-      description: 'The capital city of France',
-      image:
-        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
-    },
-    {
-      title: 'London',
-      description: 'The capital city of France',
-      image:
-        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
-    },
-    {
-      title: 'NewYork',
-      description: 'The capital city of France',
-      image:
-        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
-    },
-  ];
-  places: Destination[] = [];
+  places: Places[] = [];
   loading = true;
   constructor(private http: HttpClient) {}
   ngOnInit() {
@@ -58,7 +24,7 @@ export class GalleryComponent {
     await this.http.get<LambdaResponse>(apiUrl).subscribe({
       next: (response) => {
         if (response.statusCode === 200) {
-          this.places = JSON.parse(response.body) as Destination[];
+          this.places = JSON.parse(response.body) as Places[];
         } else {
           console.error('Unexpected status code:', response.statusCode);
         }
