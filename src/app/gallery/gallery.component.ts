@@ -7,6 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 import { Places } from '../Interfaces/placesInterface';
 import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
 
+import {
+  AfterViewInit,
+  ElementRef,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
+
+
 @Component({
   selector: 'app-gallery',
   standalone: true,
@@ -14,28 +22,32 @@ import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent {
+export class GalleryComponent implements AfterViewInit {
+  @ViewChildren('card') cards!: QueryList<ElementRef>;
+
+  ngAfterViewInit() {
+    this.cards.forEach((card) => {
+      const elem = card.nativeElement;
+      elem.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = elem.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const moveX = ((x - centerX) / centerX) * 5;
+        const moveY = ((y - centerY) / centerY) * 5;
+
+        elem.style.transform = `translateY(-5px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
+      });
+
+      elem.addEventListener('mouseleave', () => {
+        elem.style.transform = 'translateY(-5px)';
+      });
+    });
+  }
   places: Places[] = [];
-  destinations: Places[] = [
-    {
-      title: 'Paris',
-      description: 'The City of Light',
-      image:
-        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
-    },
-    {
-      title: 'Tokyo',
-      description: 'The Heart of Japan',
-      image:
-        'https://utfs.io/f/ddee2cd3-bec8-47c5-8714-e53eb6b1b6f0-1ttap2.png',
-    },
-    {
-      title: 'New York',
-      description: 'The Big Apple',
-      image:
-        'https://utfs.io/f/efd69dd5-a265-4298-84b7-6acbe95bc7ec-czc8sx.jpeg',
-    },
-  ];
   loading = true;
   constructor(private http: HttpClient) {}
   ngOnInit() {
@@ -52,7 +64,6 @@ export class GalleryComponent {
           console.error('Unexpected status code:', response.statusCode);
         }
         this.loading = false;
-        console.log(this.places);
       },
       error: (error) => {
         console.error('Error fetching destinations:', error);
