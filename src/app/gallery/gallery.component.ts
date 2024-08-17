@@ -4,6 +4,9 @@ import { CommonModule, NgFor } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 
+import { Places } from '../Interfaces/placesInterface';
+import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
+
 @Component({
   selector: 'app-gallery',
   standalone: true,
