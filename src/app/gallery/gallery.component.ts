@@ -14,6 +14,26 @@ import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
 })
 export class GalleryComponent {
   places: Places[] = [];
+  destinations: Places[] = [
+    {
+      title: 'Paris',
+      description: 'The City of Light',
+      image:
+        'https://utfs.io/f/bf37999e-afe1-4143-8b50-7f232197353e-9x8gjr.jpg',
+    },
+    {
+      title: 'Tokyo',
+      description: 'The Heart of Japan',
+      image:
+        'https://utfs.io/f/ddee2cd3-bec8-47c5-8714-e53eb6b1b6f0-1ttap2.png',
+    },
+    {
+      title: 'New York',
+      description: 'The Big Apple',
+      image:
+        'https://utfs.io/f/efd69dd5-a265-4298-84b7-6acbe95bc7ec-czc8sx.jpeg',
+    },
+  ];
   loading = true;
   constructor(private http: HttpClient) {}
   ngOnInit() {
