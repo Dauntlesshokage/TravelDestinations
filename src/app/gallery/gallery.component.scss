@@ -44,6 +44,7 @@
   border-radius: 20px;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 }
 
 .spinner-container {
@@ -68,6 +69,8 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   position: relative;
+  border-color: black;
+  border-style: dashed;
 }
 
 .destination-card:hover {
