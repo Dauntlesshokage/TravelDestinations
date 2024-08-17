@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule, NgFor } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+
 import { Places } from '../Interfaces/placesInterface';
 import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
+
 import {
   AfterViewInit,
   ElementRef,
   ViewChildren,
   QueryList,
 } from '@angular/core';
+
 
 @Component({
   selector: 'app-gallery',
