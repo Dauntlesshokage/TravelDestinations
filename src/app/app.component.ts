@@ -11,4 +11,10 @@ import { GalleryComponent } from './gallery/gallery.component';
 })
 export class AppComponent {
   title = 'traveldestinations';
+  toggleMenu() {
+    const nav = document.querySelector('.navas');
+    if (nav) {
+      nav.classList.toggle('active');
+    }
+  }
 }
