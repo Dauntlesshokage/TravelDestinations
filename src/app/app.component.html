@@ -1,28 +1,27 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div class="back" style="text-align: center">
-  <h1 data-text="Travel Destinations" class="inter-font">
-    Travel Destinations
-  </h1>
+<body>
+  <div class="nav-div">
+    <a href="" class="logo">Travel Destinations</a>
+    <nav>
+      <ul class="navas">
+        <div class="close-btn" (click)="toggleMenu()">X</div>
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Services</a></li>
+        <li><a>Contact</a></li>
+      </ul>
+
+      <div class="hamburger" (click)="toggleMenu()">
+        <span>Home</span>
+        <span>About</span>
+        <span>Services</span>
+      </div>
+    </nav>
+  </div>
   <main class="main">
     <div class="content">
       <app-gallery></app-gallery>
     </div>
   </main>
-</div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+</body>
 
 <router-outlet />
