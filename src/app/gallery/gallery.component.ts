@@ -19,31 +19,7 @@ import {
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent implements AfterViewInit {
-  @ViewChildren('card') cards!: QueryList<ElementRef>;
-
-  ngAfterViewInit() {
-    this.cards.forEach((card) => {
-      const elem = card.nativeElement;
-      elem.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = elem.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const moveX = ((x - centerX) / centerX) * 5;
-        const moveY = ((y - centerY) / centerY) * 5;
-
-        elem.style.transform = `translateY(-5px) rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
-      });
-
-      elem.addEventListener('mouseleave', () => {
-        elem.style.transform = 'translateY(-5px)';
-      });
-    });
-  }
+export class GalleryComponent {
   places: Places[] = [];
   loading = true;
   constructor(private http: HttpClient) {}
