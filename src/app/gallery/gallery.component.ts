@@ -5,25 +5,36 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { Places } from '../Interfaces/placesInterface';
 import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
-import {
-  AfterViewInit,
-  ElementRef,
-  ViewChildren,
-  QueryList,
-} from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [NgFor, CommonModule, MatProgressSpinnerModule, MatCardModule],
+  imports: [
+    NgFor,
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+  ],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent {
   places: Places[] = [];
+  selectedPlaces: Places[] = [];
+  continents = ['Asia', 'Australia', 'Europe', 'North America'];
   loading = true;
+  selectedOption = 'Asia';
+  empty = true;
   constructor(private http: HttpClient) {}
   ngOnInit() {
+    this.selectedOption = 'Asia';
     this.fetchDestinations();
   }
   async fetchDestinations() {
@@ -37,6 +48,9 @@ export class GalleryComponent {
           console.error('Unexpected status code:', response.statusCode);
         }
         this.loading = false;
+        console.log(this.places);
+
+        this.filterPlaces();
       },
       error: (error) => {
         console.error('Error fetching destinations:', error);
@@ -46,5 +60,11 @@ export class GalleryComponent {
         console.log('Fetch completed');
       },
     });
+  }
+  filterPlaces() {
+    this.selectedPlaces = this.places.filter(
+      (places) => places.continent === this.selectedOption
+    );
+    console.log(this.selectedPlaces);
   }
 }

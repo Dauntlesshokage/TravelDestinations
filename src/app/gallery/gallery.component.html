@@ -1,6 +1,19 @@
 <div>
   <div class="container1">
     <h1 data-text="Explore Places">Explore Places</h1>
+    <h4>Basic mat-select</h4>
+    <mat-form-field>
+      <mat-label>Continents</mat-label>
+      <mat-select
+        [(ngModel)]="selectedOption"
+        (selectionChange)="filterPlaces()"
+      >
+        <mat-option *ngFor="let continent of continents" [value]="continent">{{
+          continent
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <p
       style="
         color: aliceblue;
@@ -11,12 +24,13 @@
     >
       List of places you should explore
     </p>
+
     <div class="container">
       <div *ngIf="loading" class="spinner-container">
         <mat-spinner></mat-spinner>
       </div>
       <div *ngIf="!loading" class="card-container">
-        <mat-card *ngFor="let place of places" class="destination-card">
+        <mat-card *ngFor="let place of selectedPlaces" class="destination-card">
           <img mat-card-image [src]="place.image" [alt]="place.title" />
           <mat-card-header>
             <mat-card-title class="mat-card-title">{{
