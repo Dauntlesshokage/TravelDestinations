@@ -3,12 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule, NgFor } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+
 import { Places } from '../Interfaces/placesInterface';
 import { LambdaResponse } from '../Interfaces/lamdaInterfaces';
+
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
+
+
 @Component({
   selector: 'app-gallery',
   standalone: true,

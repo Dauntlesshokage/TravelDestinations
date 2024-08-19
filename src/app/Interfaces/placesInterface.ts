@@ -1,3 +1,4 @@
+
 export interface Places {
   title: string;
   continent: string;
